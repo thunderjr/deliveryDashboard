@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { Container, Breadcrumbs, Link, Typography, Paper } from '@material-ui/core';
+import { Container, Breadcrumbs, Link, Typography, Paper, Badge, IconButton } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import moment from 'moment';
 import 'moment/locale/pt-br';
@@ -15,36 +17,33 @@ const useWeeks = month => {
     const days = useDaysInMonth(month);
     const firstDay = moment(month, 'MM');
     const firstDay_DOW = (firstDay.day() === 0) ? 6 : firstDay.day() - 1;
-    
     const daysArray = [...Array(days).keys()].map(i => moment(month, 'MM').add(i, 'days'));
     const qtdWeeks = Math.ceil(daysArray.length / 7);
-
     return [...Array(qtdWeeks).keys()].map(i => daysArray.splice(0, (i === 0) ? 7 - firstDay_DOW : 7));
 }
 
-
-const WeekdayLetters = () => ['S','T','Q','Q','S','S','D'].map(l => (<div className="weekDayLetters">{ l }</div>));
-
-const WeekPlaceholder = ({ lengthOfWeek }) => [...Array(7 - lengthOfWeek).keys()].map(x => <DayCard key={`calendarDayPlaceholder-${x}`} invisible />);
-
 const DayCard = ({ day, invisible }) => {
     return (
-        <div className={`dayCard ${(invisible) ? 'hidden' : ''}`}>
-            <Paper square>
-                {(day || moment()).format('DD')}
-            </Paper>
-        </div>
+        <Badge>
+            <div className={`dayCard ${(invisible) ? 'hidden' : ''}`}>
+                <Paper square>
+                    {(day || moment()).format('DD')}
+                </Paper>
+            </div>
+        </Badge>
     )
 }
+
+const WeekdayLetters = () => ['S','T','Q','Q','S','S','D'].map((l, index) => (<div key={`weekCaption-${l+index}`} className="weekDayLetters">{ l }</div>));
+const WeekPlaceholder = ({ lengthOfWeek }) => [...Array(7 - lengthOfWeek).keys()].map(x => <DayCard key={`calendarDayPlaceholder-${x}`} invisible />);
 
 export default function Calendar() {
     const [actualMonth, setActualMonth] = useState(Number(moment().format("MM")));
     const daysInActualMonth = useDaysInMonth(actualMonth);
-    const weeks = useWeeks(actualMonth);
+    let weeks = useWeeks(actualMonth);
 
-    useEffect(() => {
-        // console.log(weeks.map(w => w.map(d => d.format('LL'))))
-    }, [weeks]);
+    const handlePrevMonth = () => setActualMonth(Number(moment(actualMonth, 'MM').subtract(1, 'months').format('MM')));
+    const handleNextMonth = () => setActualMonth(Number(moment(actualMonth, 'MM').add(1, 'months').format('MM')));
 
     return (
         <Container>
@@ -59,6 +58,11 @@ export default function Calendar() {
                 </Typography>
             </header>
             <section className="body">
+                <header>
+                    <IconButton onClick={handlePrevMonth}><ChevronLeftIcon /></IconButton>
+                    <Typography style={{color: "#FFFFFF71"}} variant="h3">{ moment(actualMonth, 'MM').format("MMMM").toUpperCase() }</Typography>
+                    <IconButton onClick={handleNextMonth}><ChevronRightIcon /></IconButton>
+                </header>
                 <div className="weeksWrapper">
                     <div className="daysWrapper">
                         <WeekdayLetters />

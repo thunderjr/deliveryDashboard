@@ -1,8 +1,24 @@
 section.body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+section.body header {
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+    justify-content: space-between;
+}
+
+section.body header .MuiIconButton-root {
+    display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    padding: 0;
+    height: 48px;
+    width: 48px;
 }
 
 .weeksWrapper {
@@ -46,5 +62,5 @@ section.body {
     -ms-user-select: none;
     user-select: none;
     font-size: 25pt;
-    color: rgba(255, 255, 255, 0.4);
+    color: #ffffff71;
 }

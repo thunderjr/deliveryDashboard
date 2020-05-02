@@ -28,7 +28,6 @@ export const TodayGainsCard = ({ data }) => {
     );
 }
 
-// add slider to see between weeks
 export const WeekGainsCard = ({ weekData, data }) => {
     // const ganhos = (data.logs || [{}]).filter(log => moment(log.data).isBetween(moment().startOf('week').add(1, 'days'), moment())).reduce((s, g) => s + g.valor + g.gorjetas, 0);
     // const corridas = (data.logs || [{}]).filter(log => moment(log.data).isBetween(moment().startOf('week').add(1, 'days'), moment())).reduce((s, g) => s + g.corridas, 0);
