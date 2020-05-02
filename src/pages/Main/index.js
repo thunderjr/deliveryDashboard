@@ -40,23 +40,6 @@ export default function Main() {
                 <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
                     <Link color="inherit" href="/">Home</Link>
                 </Breadcrumbs>
-                <div className="periodoSelectGroup">
-                    <DateRangeIcon />
-                    <Select className="periodoSelect" value={periodo} onChange={e => setPeriodo(e.target.value)}>
-                        <MenuItem value="all">
-                            <Typography variant="button">Todo o período</Typography>
-                        </MenuItem>
-                        <MenuItem value="today">
-                            <Typography variant="button">Hoje</Typography>
-                        </MenuItem>
-                        <MenuItem value="week">
-                            <Typography variant="button">Esta semana</Typography>
-                        </MenuItem>
-                        <MenuItem value="month">
-                            <Typography variant="button">Este mês</Typography>
-                        </MenuItem>
-                    </Select>
-                </div>
                 <Typography variant="h5">
                     Resumo de Ganhos
                 </Typography>
