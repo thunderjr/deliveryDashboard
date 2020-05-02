@@ -15,8 +15,8 @@ const AppBarPlaceholder = () => <div style={{height: 64}}></div>;
 
 const menuItems = [
     { text: "Página Inicial", icon: (<HomeIcon />), route: '/' },
-    { text: "Agenda", icon: (<EventIcon />), route: '/agenda' },
     { text: "Registrar Ganhos", icon: (<LibraryAddIcon />), route: '/logs/new' },
+    { text: "Calendário", icon: (<EventIcon />), route: '/calendario' },
 ];
 
 export default function SideMenu() {
