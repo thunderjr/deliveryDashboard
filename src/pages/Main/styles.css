@@ -1,0 +1,67 @@
+header {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.periodoSelectGroup {
+    position: absolute;
+    top: 0;
+    right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.periodoSelectGroup svg:first-child {
+    margin-right: 15px;
+}
+
+.periodoSelectGroup .MuiInput-underline::before,
+.periodoSelectGroup .Mui-focused {
+    border-bottom: 0;
+}
+
+.periodoSelect {
+    width: 150px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resumeRow {
+    margin-bottom: 20px;
+}
+
+.appsRow {
+    margin-bottom: 20px;
+}
+
+.Card {
+    flex: 1;
+    padding: 20px;
+    margin: 5px;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.allTimeData {
+    max-width: 28vw;
+}
+
+.MuiAvatar-root#moneyAvatar {
+    background: #01579b;
+    color: white;
+    width: 50px;
+    height: 50px;
+}
