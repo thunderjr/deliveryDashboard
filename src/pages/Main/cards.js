@@ -21,7 +21,7 @@ export const TodayGainsCard = ({ data }) => {
             <div className="row" style={{alignItems: 'center'}}>
                 <span>
                     <Typography variant="h6">{ money(ganhos) }</Typography>
-                    <Typography variant="caption">{corridas} corrida{(corridas > 1) ? 's' : ''}</Typography>
+                    <Typography variant="caption">{(corridas === 0) ? 'Nenhuma' : corridas} corrida{(corridas > 1) ? 's' : ''}</Typography>
                 </span>
             </div>
         </Paper>
@@ -49,7 +49,7 @@ export const WeekGainsCard = ({ weekData, data }) => {
                     <div className="row" style={{alignItems: 'center'}}>
                         <span>
                             <Typography variant="h6">{ money(w.ganhos) }</Typography>
-                            <Typography variant="caption">{w.corridas} corrida{(w.corridas > 1) ? 's' : ''}</Typography>
+                            <Typography variant="caption">{(w.corridas === 0) ? 'Nenhuma' : w.corridas} corrida{(w.corridas > 1) ? 's' : ''}</Typography>
                         </span>
                         <span>
                             <Typography variant="subtitle2"> Média p/ dia </Typography>
@@ -95,7 +95,7 @@ export const MonthGainsCard = () => {
                     <div className="row" style={{alignItems: 'center'}}>
                         <span>
                             <Typography variant="h6">{ money(m.ganhos) }</Typography>
-                            <Typography variant="caption">{m.corridas} corrida{(m.corridas > 1) ? 's' : ''}</Typography>
+                            <Typography variant="caption">{(m.corridas === 0) ? 'Nenhuma' : m.corridas} corrida{(m.corridas > 1) ? 's' : ''}</Typography>
                         </span>
                         <span>
                             <Typography variant="subtitle2"> Média p/ dia </Typography>
