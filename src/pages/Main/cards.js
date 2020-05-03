@@ -16,7 +16,7 @@ export const TodayGainsCard = ({ data }) => {
     const corridas = (data.logs || [{}]).filter(log => log.data === moment().format('YYYY-MM-DD')).reduce((s, g) => s + g.corridas, 0);
 
     return (
-        <Paper className="Card" style={{flex:0.5}} square>
+        <Paper className="Card" style={{flex:0.3}} square>
             <Typography variant="h5"> Hoje </Typography>
             <div className="row" style={{alignItems: 'center'}}>
                 <span>
@@ -43,7 +43,7 @@ export const WeekGainsCard = ({ weekData, data }) => {
             className="flex1"
         >
             { weekData.map(w => (
-                <Paper key={`semana-${w.week}`} className="Card" square>
+                <Paper key={`semana-${w.week}`} className="Card" style={{flex: 0.5}} square>
                     <Typography variant="h5"> 
                         {(w.week === todayWeekNum) ? 'Esta Semana' : `Semana ${w.week}`} 
                     </Typography>
@@ -100,7 +100,11 @@ export const MonthGainsCard = () => {
                         </span>
                         <span>
                             <Typography variant="subtitle2"> Média p/ dia </Typography>
-                            <Typography variant="caption">{ money(m.media) }</Typography>
+                            <Typography variant="caption">{ money(m.media_dia) }</Typography>
+                        </span>
+                        <span>
+                            <Typography variant="subtitle2">Média p/ Semana</Typography>
+                            <Typography variant="caption">{ money(m.media_semana) }</Typography>
                         </span>
                         <span>
                             <Typography variant="subtitle2">Qtd. dias</Typography>

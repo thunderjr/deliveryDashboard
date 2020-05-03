@@ -43,13 +43,13 @@ routes.get("/", (request, response) => {
 
 // week resume
 routes.get("/week", (request, response) => {
-    con.query("SELECT SUM(valor + gorjetas) as ganhos, SUM(corridas) as corridas , COUNT(DISTINCT data) as dias_trabalhados, ROUND(SUM(valor+gorjetas) / COUNT(DISTINCT data), 2) as media, week FROM gains_logs GROUP BY week ORDER BY week DESC", (err, results) => {
+    con.query("SELECT SUM(valor + gorjetas) as ganhos, SUM(corridas) as corridas , COUNT(DISTINCT data) as dias_trabalhados, ROUND(SUM(valor+gorjetas) / COUNT(DISTINCT data), 2) as media, week FROM gains_logs GROUP BY week ORDER BY week ASC", (err, results) => {
         response.json(results);
     });
 });
 
 routes.get("/month", (request, response) => {
-    con.query("SELECT SUM(valor + gorjetas) as ganhos, SUM(corridas) as corridas, COUNT(DISTINCT data) as dias_trabalhados, ROUND(SUM(valor+gorjetas) / COUNT(DISTINCT data), 2) as media, CAST(SUBSTRING(data, 6, 2) as SIGNED) as mes FROM gains_logs GROUP BY mes ORDER BY mes DESC", (err, results) => {
+    con.query("SELECT SUM(valor + gorjetas) as ganhos, SUM(corridas) as corridas, COUNT(DISTINCT data) as dias_trabalhados, ROUND(SUM(valor+gorjetas) / COUNT(DISTINCT data), 2) as media_dia, ROUND(SUM(valor+gorjetas) / COUNT(DISTINCT week), 2) as media_semana, CAST(SUBSTRING(data, 6, 2) as SIGNED) as mes FROM gains_logs GROUP BY mes ORDER BY mes DESC", (err, results) => {
         response.json(results);
     });
 });

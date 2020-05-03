@@ -18,7 +18,7 @@ const useWeeks = month => {
     const firstDay = moment(month, 'MM');
     const firstDay_DOW = (firstDay.day() === 0) ? 6 : firstDay.day() - 1;
     const daysArray = [...Array((month === 12) ? 31 : days).keys()].map(i => moment(month, 'MM').add(i, 'days'));
-    const qtdWeeks = Math.ceil(daysArray.length / 7);
+    const qtdWeeks = Math.ceil(daysArray.length / 7) + 1;
     return [...Array(qtdWeeks).keys()].map(i => daysArray.splice(0, (i === 0) ? 7 - firstDay_DOW : 7));
 }
 
@@ -59,9 +59,9 @@ export default function Calendar() {
             </header>
             <section className="body">
                 <header>
-                    { (actualMonth === 1) ? [] : <IconButton onClick={handlePrevMonth}><ChevronLeftIcon /></IconButton> }
+                    { (actualMonth === 1) ? <IconButton><ChevronLeftIcon /></IconButton> : <IconButton onClick={handlePrevMonth}><ChevronLeftIcon /></IconButton> }
                     <Typography style={{color: "#FFFFFF71"}} variant="h3">{ moment(actualMonth, 'MM').format("MMMM").toUpperCase() }</Typography>
-                    { (actualMonth === 12) ? [] : <IconButton onClick={handleNextMonth}><ChevronRightIcon /></IconButton> }
+                    { (actualMonth === 12) ? <IconButton><ChevronRightIcon /></IconButton> : <IconButton onClick={handleNextMonth}><ChevronRightIcon /></IconButton> }
                 </header>
                 <div className="weeksWrapper">
                     <div className="daysWrapper">
