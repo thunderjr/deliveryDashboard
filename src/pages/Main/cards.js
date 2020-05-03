@@ -31,7 +31,9 @@ export const TodayGainsCard = ({ data }) => {
 export const WeekGainsCard = ({ weekData, data }) => {
     // const ganhos = (data.logs || [{}]).filter(log => moment(log.data).isBetween(moment().startOf('week').add(1, 'days'), moment())).reduce((s, g) => s + g.valor + g.gorjetas, 0);
     // const corridas = (data.logs || [{}]).filter(log => moment(log.data).isBetween(moment().startOf('week').add(1, 'days'), moment())).reduce((s, g) => s + g.corridas, 0);
-    const todayWeekNum = ((data.logs || [{}]).filter(log => log.data === moment().format('YYYY-MM-DD'))[0] || {}).week;
+    const datesArray = (data.logs || [{}]).map(l => new Date(l.data));
+    const maxDate = Math.max.apply(null, datesArray)
+    const todayWeekNum = ((data.logs || [{}]).filter(log => log.data === moment(maxDate).format('YYYY-MM-DD'))[0] || {}).week;
 
     return (
         <Carousel

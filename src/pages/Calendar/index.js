@@ -17,7 +17,7 @@ const useWeeks = month => {
     const days = useDaysInMonth(month);
     const firstDay = moment(month, 'MM');
     const firstDay_DOW = (firstDay.day() === 0) ? 6 : firstDay.day() - 1;
-    const daysArray = [...Array(days).keys()].map(i => moment(month, 'MM').add(i, 'days'));
+    const daysArray = [...Array((month === 12) ? 31 : days).keys()].map(i => moment(month, 'MM').add(i, 'days'));
     const qtdWeeks = Math.ceil(daysArray.length / 7);
     return [...Array(qtdWeeks).keys()].map(i => daysArray.splice(0, (i === 0) ? 7 - firstDay_DOW : 7));
 }
@@ -43,7 +43,7 @@ export default function Calendar() {
     let weeks = useWeeks(actualMonth);
 
     const handlePrevMonth = () => setActualMonth(Number(moment(actualMonth, 'MM').subtract(1, 'months').format('MM')));
-    const handleNextMonth = () => setActualMonth(Number(moment(actualMonth, 'MM').add(1, 'months').format('MM')));
+    const handleNextMonth = () => (actualMonth === 12) ? [] : setActualMonth(Number(moment(actualMonth, 'MM').add(1, 'months').format('MM')));
 
     return (
         <Container>
@@ -59,9 +59,9 @@ export default function Calendar() {
             </header>
             <section className="body">
                 <header>
-                    <IconButton onClick={handlePrevMonth}><ChevronLeftIcon /></IconButton>
+                    { (actualMonth === 1) ? [] : <IconButton onClick={handlePrevMonth}><ChevronLeftIcon /></IconButton> }
                     <Typography style={{color: "#FFFFFF71"}} variant="h3">{ moment(actualMonth, 'MM').format("MMMM").toUpperCase() }</Typography>
-                    <IconButton onClick={handleNextMonth}><ChevronRightIcon /></IconButton>
+                    { (actualMonth === 12) ? [] : <IconButton onClick={handleNextMonth}><ChevronRightIcon /></IconButton> }
                 </header>
                 <div className="weeksWrapper">
                     <div className="daysWrapper">

@@ -55,28 +55,37 @@ export default function Main() {
             {/* Fim Linha Resumo */}
             
             {/* Resto do conteúdo */}
-            <section className="allTimeData">
-                <Paper className="Card" square>
-                    <Typography variant="h4" gutterBottom>All Time Data</Typography>
-                    <Typography variant="h6"> Ganhos </Typography>
-                    <div className="row" style={{alignItems: 'center', marginBottom: 20}}>
-                        <span>
-                            <Typography variant="h6">{ money(apiData.ganhos) }</Typography>
-                            <Typography variant="caption">{apiData.corridas} corridas</Typography>
-                        </span>
-                        <Avatar id="moneyAvatar">$</Avatar>
-                    </div>
-                    <div className="row">
-                        <span>
-                            <Typography variant="subtitle2"> Média p/ Dia </Typography>
-                            <Typography variant="h6">{ money(apiData.mediaDia) }</Typography>
-                        </span>
-                        <span>
-                            <Typography variant="subtitle2"> Dias Trabalhados </Typography>
-                            <Typography variant="h6">{ apiData.qtdDias }</Typography>
-                        </span>
-                    </div>
-                </Paper>
+            <section className="row content">
+                <div className="allTimeData">
+                    <Paper className="Card" square>
+                        <Typography variant="h4" gutterBottom>All Time Data</Typography>
+                        <Typography variant="h6"> Ganhos </Typography>
+                        <div className="row" style={{alignItems: 'center', marginBottom: 20}}>
+                            <span>
+                                <Typography variant="h6">{ money(apiData.ganhos) }</Typography>
+                                <Typography variant="caption">{apiData.corridas} corridas</Typography>
+                            </span>
+                            <Avatar id="moneyAvatar">$</Avatar>
+                        </div>
+                        <div className="row">
+                            <span>
+                                <Typography variant="subtitle2"> Média p/ Dia </Typography>
+                                <Typography variant="h6">{ money(apiData.mediaDia) }</Typography>
+                            </span>
+                            <span>
+                                <Typography variant="subtitle2"> Dias Trabalhados </Typography>
+                                <Typography variant="h6">{ apiData.qtdDias }</Typography>
+                            </span>
+                        </div>
+                    </Paper>
+                </div>
+                <div className="gorjetasIn">
+                    <Paper className="Card" square>
+                        <Typography variant="h5">Gorjetas em Abril</Typography>
+                        <Typography variant="caption" gutterBottom>08/05 na conta</Typography>
+                        <Typography variant="h6" gutterBottom>{ money((apiData.logs || [{}]).filter(y => y.app === 'iFood').filter(y => (y.data || "").split("-")[1] === "04").reduce((s, x) => s + x.gorjetas, 0)) }</Typography>
+                    </Paper>
+                </div>
             </section>
         </Container>
     );
