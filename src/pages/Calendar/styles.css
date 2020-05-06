@@ -32,9 +32,7 @@ section.body header .MuiIconButton-root {
 }
 
 .weekDayLetters {
-    width: 90px;
     height: 30px;
-    margin: 5px;
     margin-bottom: 20px;
     display: flex;
     align-items: center;
@@ -42,10 +40,13 @@ section.body header .MuiIconButton-root {
     font-size: 16pt;
 }
 
+.dayCard, .weekDayLetters {
+    width: 80px;
+    margin: 3px;
+}
+
 .dayCard {
-    width: 90px;
-    height: 90px;
-    margin: 5px;
+    height: 80px;
 }
 
 .dayCard.hidden {
@@ -55,12 +56,17 @@ section.body header .MuiIconButton-root {
 .dayCard .MuiPaper-root {
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    font-size: 25pt;
-    color: #ffffff71;
+    font-size: 19pt;
+    color: #ffffff98;
+}
+
+.dayCard .MuiPaper-root .MuiTypography-caption {
+    color: #ffffffbe;
 }
