@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Breadcrumbs, Select, MenuItem, Paper, Link, Typography, Avatar } from '@material-ui/core';
 
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import DateRangeIcon from '@material-ui/icons/DateRange';
 
 import { TodayGainsCard, WeekGainsCard, MonthGainsCard } from './cards';
 
@@ -12,7 +11,6 @@ import './styles.css';
 const money = m => Intl.NumberFormat("pt-BR", { style: 'currency', currency: 'BRL'}).format(m);
 
 export default function Main() {
-    const [periodo, setPeriodo] = useState("all");
     const [apiData, setData] = useState({});
     const [weekData, setWeekData] = useState([]);
 
@@ -77,13 +75,6 @@ export default function Main() {
                                 <Typography variant="h6">{ apiData.qtdDias }</Typography>
                             </span>
                         </div>
-                    </Paper>
-                </div>
-                <div className="gorjetasIn">
-                    <Paper className="Card" square>
-                        <Typography variant="h5">Gorjetas em Abril</Typography>
-                        <Typography variant="caption" gutterBottom>08/05 na conta</Typography>
-                        <Typography variant="h6" gutterBottom>{ money((apiData.logs || [{}]).filter(y => y.app === 'iFood').filter(y => (y.data || "").split("-")[1] === "04").reduce((s, x) => s + x.gorjetas, 0)) }</Typography>
                     </Paper>
                 </div>
             </section>

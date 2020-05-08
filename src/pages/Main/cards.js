@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { Paper, Typography, Avatar, Badge } from '@material-ui/core';
 
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-
 import Carousel from 'react-material-ui-carousel';
 
 import moment from 'moment';
