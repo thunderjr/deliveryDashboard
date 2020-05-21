@@ -63,7 +63,7 @@ routes.post("/logs/new", (request, response) => {
      */ 
     con.query("SELECT data, week FROM gains_logs WHERE data=(SELECT MAX(data) FROM gains_logs) LIMIT 1", (err, weekResult) => {
         if (err) throw err;
-        const week = (moment(data, "YYYY/MM/DD").isBetween(moment(weekResult[0].data), moment(weekResult[0].data).endOf('week').add(1, 'days'), null, "[]")) ? weekResult[0].week : weekResult[0].week + 1;
+        const week = (moment(data, "YYYY/MM/DD").isBetween(moment(weekResult[0].data), moment(weekResult[0].data).endOf('isoWeek'), null, "[]")) ? weekResult[0].week : weekResult[0].week + 1;
         const query = `INSERT INTO gains_logs (data, app, valor, gorjetas, corridas, week) VALUES ('${data}', '${app}', ${valor}, ${gorjetas}, ${corridas}, ${week})`;
         con.query(query, (err, results) => {
             if (err) throw err;
